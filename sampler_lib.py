@@ -284,7 +284,7 @@ def sampling_study(p_df: pd.DataFrame, d_df: pd.DataFrame, dir_name: str, case: 
 
 
     n_sigma = 3
-    n_samples = 1001    # includes the last list with mean masses -> 1000 samples + 1 mean mass list
+    n_samples = 2001    # includes the last list with mean masses -> 1000 samples + 1 mean mass list
     p_dfs = [p_df_cut]
     d_dfs = [d_df_cut]
 
@@ -493,7 +493,7 @@ def sample_masses(p_df: pd.DataFrame, d_df: pd.DataFrame, n_samples: int, nsigma
 
     initial_point = set_initial_feasible_point(masses, mass_edges_n, mass_edges_p, where="org", verbose=verbose)
 
-    sampled_masses = hit_and_run_uniform(csr_constraints, 1e-09, lower_bounds, upper_bounds, initial_point, stable_particles_ids, scale, n_samples=n_samples, burn=1000, thin=2000, scale_coordinates=True, verbose=verbose)
+    sampled_masses = hit_and_run_uniform(csr_constraints, 1e-09, lower_bounds, upper_bounds, initial_point, stable_particles_ids, scale, n_samples=n_samples, burn=1000, thin=8000, scale_coordinates=True, verbose=verbose)
 
     mean_sampled_masses = mean_sample(sampled_masses, scale, lower_bounds)
 
@@ -505,7 +505,7 @@ def sample_masses(p_df: pd.DataFrame, d_df: pd.DataFrame, n_samples: int, nsigma
             print("Error: Some sampled masses are above the upper bounds!")
 
         #plot_sample(sampled_masses, scale, lower_bounds, p_df=p_df, dir_name="Plots/Debug_sampling3")
-        plot_sample_2(sampled_masses, scale, lower_bounds, dir_name="Plots/Debug_sampling3", edges=(mass_edges_n, mass_edges_p))
+        plot_sample_2(sampled_masses, scale, lower_bounds, dir_name="Plots/Debug_sampling4", edges=(mass_edges_n, mass_edges_p))
 
     sampled_df_list = []
 
