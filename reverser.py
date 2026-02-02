@@ -51,6 +51,28 @@ def reverser_routine_new(dir_name: str = "cuts_test", no_lists: int = 1):
         print(f"Reversed file created: {outputfile}")
 
 
+
+def reverse_single_file(inputfile: str):
+    """
+    Reverses the lines of a single specified file.
+    
+    Args:
+        inputfile (str): The path to the input file.
+    """
+    with open(inputfile, "r") as file:
+        lines = file.readlines()
+
+    lines.reverse()
+
+    outputfile = inputfile.replace(".dat", "_reversed.dat")
+    with open(outputfile, "w") as file:
+        file.writelines(lines)
+
+    print(f"Reversed file created: {outputfile}")
+
+
+
+
 def main():
 
     # cut = 1e-09
